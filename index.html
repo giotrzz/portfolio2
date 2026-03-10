@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giovana | Portfólio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <a href="#hero" class="nav-logo">gio.</a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#formacao">Formação</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="grid-lines"></div>
+    </div>
+    <div class="hero-content">
+      <p class="greeting" id="greeting">Prazer!</p>
+      <h1 class="hero-title">
+        <em>Giovana Tarozo</em><br />
+        <span class="hero-subtitle-text">Estudante de Desenvolvimento<br />de Software</span>
+      </h1>
+      <p class="hero-desc">Curiosa por natureza, apaixonada por tecnologia, dados e design.</p>
+      <div class="hero-ctas">
+        <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
+        <a href="#sobre" class="btn btn-ghost">Sobre Mim</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre section" id="sobre">
+    <div class="container">
+      <div class="section-label">— Sobre Mim</div>
+      <div class="sobre-grid">
+        <div class="sobre-img-wrap">
+          <div class="sobre-img-frame">
+            <div class="sobre-img-placeholder">
+              <img src="src/foto_gi.jpeg" alt="Giovana Tarozo">
+            </div>
+            <div class="sobre-img-deco"></div>
+          </div>
+          <div class="sobre-tags">
+            <span class="tag tag-blue">Python</span>
+            <span class="tag tag-orange">HTML</span>
+            <span class="tag tag-green">CSS</span>
+            <span class="tag tag-dark">Flask</span>
+            <span class="tag tag-yellow">JavaScript</span>
+            <span class="tag tag-teal">Bootstrap</span>
+            <span class="tag tag-red">SQL</span>
+          </div>
+        </div>
+        <div class="sobre-text">
+          <h2>Olá!</h2>
+          <p>Sou estudante de tecnologia que ama explorar o mundo tech e suas inovações contínuas, além de nerd possuo outros hobbies como futebol e tenis de mesa .</p>
+          <div class="sobre-links">
+            <a href="https://www.linkedin.com/in/giovana-tarozo/" target="_blank" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/giotrzz" target="_blank" class="social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section class="projetos section" id="projetos">
+    <div class="container">
+      <div class="section-label">— Projetos</div>
+      <h2 class="section-title">O que eu criei</h2>
+      <div class="projetos-grid">
+
+        <div class="projeto-card" data-index="0">
+          <div class="projeto-thumb" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="30" width="10" height="22" rx="2" fill="#fff" fill-opacity="0.9" />
+              <rect x="25" y="18" width="10" height="34" rx="2" fill="#f59e0b" fill-opacity="0.9" />
+              <rect x="42" y="10" width="10" height="42" rx="2" fill="#34d399" fill-opacity="0.9" />
+            </svg>
+          </div>
+          <div class="projeto-body">
+            <h3>Análise de Dados dos Censos</h3>
+            <p>Análise e coleta de dados demográficos, educacionais e sociais de São José dos Campos e região utilizando
+              Python e pandas.</p>
+            <p class="projeto-detail">Projeto de faculdade desenvolvido em equipe na metodologia ágil. Desenvolvi
+              papel de scrum master, participando ativamente no gerenciamento do time e auxiliando nas tarefas de
+              desenvolvimento e análises de dados.</p>
+            <div class="projeto-tags">
+              <span class="tag tag-blue">Python</span>
+              <span class="tag tag-green">Pandas</span>
+              <span class="tag tag-orange">Matplotlib</span>
+              <span class="tag tag-yellow">Google Colab</span>
+              <span class="tag tag-orange">HTML</span>
+              <span class="tag tag-teal">CSS</span>
+              <span class="tag tag-dark">Flask</span>
+            </div>
+            <a href="https://github.com/koitech-API" target="_blank" class="btn btn-sm">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+                <path
+                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+              </svg>
+              Ver no GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="projeto-card" data-index="1">
+          <div class="projeto-thumb" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="40" height="30" rx="4" fill="white" fill-opacity="0.2" stroke="white"
+                stroke-width="2" />
+              <line x1="10" y1="20" x2="50" y2="20" stroke="white" stroke-width="1.5" />
+              <rect x="15" y="25" width="12" height="8" rx="2" fill="white" fill-opacity="0.6" />
+              <rect x="33" y="25" width="12" height="8" rx="2" fill="white" fill-opacity="0.6" />
+              <line x1="30" y1="40" x2="30" y2="48" stroke="white" stroke-width="2" />
+              <rect x="20" y="48" width="20" height="4" rx="2" fill="white" fill-opacity="0.7" />
+            </svg>
+          </div>
+          <div class="projeto-body">
+            <h3>Primeiro Portfólio Pessoal</h3>
+            <p>Desenvolvido com HTML CSS e bootstrap. Essa é a primeira versão deste portfolio.</p>
+            <p class="projeto-detail">Projeto desenvolvido com foco em design responsivo,
+              aplicando boas práticas de desenvolvimento front-end.</p>
+            <div class="projeto-tags">
+              <span class="tag tag-orange">HTML</span>
+              <span class="tag tag-teal">CSS</span>
+              <span class="tag tag-yellow">Bootstrap</span>
+            </div>
+            <a href="https://giotrzz.github.io/portfolio/" target="_blank" class="btn btn-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Ver Projeto
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HABILIDADES -->
+  <section class="habilidades section" id="habilidades">
+    <div class="container">
+      <div class="section-label">— Habilidades</div>
+      <h2 class="section-title">Minhas Habilidades</h2>
+      <div class="skills-grid">
+
+        <div class="skill-card">
+          <div class="skill-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+            <svg viewBox="0 0 40 40" fill="none">
+              <text x="8" y="28" font-size="20" fill="white">🐍</text>
+            </svg>
+          </div>
+          <h3>Python</h3>
+          <p>Pandas, NumPy, Matplotlib, Flask</p>
+          <div class="skill-bar">
+            <div class="skill-fill" style="--w: 75%"></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon" style="background: linear-gradient(135deg, #10b981, #047857);">
+            <svg viewBox="0 0 40 40" fill="none">
+              <text x="8" y="28" font-size="20" fill="white">📊</text>
+            </svg>
+          </div>
+          <h3>Data Analysis</h3>
+          <p>Excel, SQL, Visualização de dados</p>
+          <div class="skill-bar">
+            <div class="skill-fill" style="--w: 70%"></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon" style="background: linear-gradient(135deg, #f59e0b, #b45309);">
+            <svg viewBox="0 0 40 40" fill="none">
+              <text x="8" y="28" font-size="20" fill="white">🌐</text>
+            </svg>
+          </div>
+          <h3>Web Dev</h3>
+          <p>HTML, CSS, JavaScript, Bootstrap</p>
+          <div class="skill-bar">
+            <div class="skill-fill" style="--w: 80%"></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon" style="background: linear-gradient(135deg, #ec4899, #be185d);">
+            <svg viewBox="0 0 40 40" fill="none">
+              <text x="8" y="28" font-size="20" fill="white">🎨</text>
+            </svg>
+          </div>
+          <h3>Design</h3>
+          <p>UI/UX, Bootstrap, Figma</p>
+          <div class="skill-bar">
+            <div class="skill-fill" style="--w: 65%"></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon" style="background: linear-gradient(135deg, #8b5cf6, #5b21b6);">
+            <svg viewBox="0 0 40 40" fill="none">
+              <text x="8" y="28" font-size="20" fill="white">🔒</text>
+            </svg>
+          </div>
+          <h3>Cibersegurança</h3>
+          <p>Redes, Sistemas Operacionais</p>
+          <div class="skill-bar">
+            <div class="skill-fill" style="--w: 55%"></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon" style="background: linear-gradient(135deg, #06b6d4, #0e7490);">
+            <svg viewBox="0 0 40 40" fill="none">
+              <text x="8" y="28" font-size="20" fill="white">⚡</text>
+            </svg>
+          </div>
+          <h3>Metodologias</h3>
+          <p>SCRUM, Trabalho em equipe</p>
+          <div class="skill-bar">
+            <div class="skill-fill" style="--w: 72%"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMAÇÃO -->
+  <section class="formacao section" id="formacao">
+    <div class="container">
+      <div class="section-label">— Formação & Cursos</div>
+      <h2 class="section-title">Minha trajetória</h2>
+      <div class="formacao-layout">
+
+        <div class="timeline">
+          <h3 class="timeline-title">Formação Acadêmica</h3>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">2025 — Atual</span>
+              <h4>Tecnólogo em Desenvolvimento de Software Multiplataforma</h4>
+              <p class="timeline-inst">Ensino Superior</p>
+              <p>Formação moderna que une conhecimentos de computação, sistemas operacionais, lógica e matemática com
+                tecnologias para desenvolvimento de software web, mobile, IA, banco de dados e computação em nuvem.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">Concluído</span>
+              <h4>Técnico em Informática</h4>
+              <p class="timeline-inst">Ensino Médio Técnico</p>
+              <p>Bases sólidas em lógica de programação, hardware, redes e sistemas operacionais. Desenvolvimento de
+                habilidades como organização, trabalho em equipe e inovação.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cursos-col">
+          <h3 class="timeline-title">Cursos & Certificações</h3>
+          <div class="cursos-list">
+
+            <div class="curso-card">
+              <div class="curso-thumb" style="background: linear-gradient(135deg, #f43f5e, #ec4899);">
+                <span>🎓</span>
+              </div>
+              <div class="curso-info">
+                <h4>Escola de Inovadores</h4>
+                <p>Programa voltado à formação de empreendedores inovadores. Aprendi a transformar ideias em soluções
+                  reais, aplicando ferramentas de gestão, inovação e design thinking para estruturar um projeto com
+                  potencial de impacto social e tecnológico.</p>
+                <a href="src/certificado_escola_inovadores.pdf" target="_blank" class="btn btn-sm btn-outline">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                  </svg>
+                  Ver Certificado
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-name">Giovana Tarozo</p>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/giovana-tarozo/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/giotrzz" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
