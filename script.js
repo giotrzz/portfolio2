@@ -1,7 +1,7 @@
-/* =====================
+/* 
    DADOS EM ARRAYS/OBJETOS
    (Requisito: dados carregados a partir de arrays no JS)
-   ===================== */
+ */
 
 const projetos = [
   {
@@ -97,12 +97,10 @@ const cursos = [
   }
 ];
 
-/* =====================
+/*
    FUNÇÕES DE RENDERIZAÇÃO
-   (Requisito 3: Funções)
-   ===================== */
+   (Requisito 3: Funções) */
 
-// Função auxiliar para gerar ícone SVG de link
 function gerarIconeLink(tipo) {
   if (tipo === "github") {
     return `<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
@@ -116,7 +114,6 @@ function gerarIconeLink(tipo) {
   </svg>`;
 }
 
-// Função para gerar o thumb SVG de cada projeto
 function gerarThumbSVG(index) {
   if (index === 0) {
     return `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,11 +139,10 @@ function renderizarProjetos(lista) {
 
   grid.innerHTML = '';
 
-  // Requisito 2: comando de repetição (for)
   for (let i = 0; i < lista.length; i++) {
     const projeto = lista[i];
 
-    // Gerar tags com for
+
     let tagsHTML = '';
     for (let j = 0; j < projeto.tags.length; j++) {
       tagsHTML += `<span class="tag ${projeto.tags[j].cor}">${projeto.tags[j].texto}</span>`;
@@ -176,7 +172,6 @@ function renderizarProjetos(lista) {
     grid.appendChild(card);
   }
 
-  // Reaplica stagger e reveal nos novos cards
   staggerGrid('.projeto-card');
   aplicarReveal();
 }
@@ -188,7 +183,6 @@ function renderizarHabilidades() {
 
   grid.innerHTML = '';
 
-  // Requisito 2: comando de repetição (for)
   for (let i = 0; i < habilidades.length; i++) {
     const habilidade = habilidades[i];
 
@@ -211,7 +205,6 @@ function renderizarHabilidades() {
     grid.appendChild(card);
   }
 
-  // Reaplica animação das barras
   observarBarras();
   staggerGrid('.skill-card');
 }
@@ -223,7 +216,6 @@ function renderizarCursos() {
 
   lista.innerHTML = '';
 
-  // Requisito 2: comando de repetição (for)
   for (let i = 0; i < cursos.length; i++) {
     const curso = cursos[i];
 
@@ -253,12 +245,11 @@ function renderizarCursos() {
   staggerGrid('.curso-card');
 }
 
-/* =====================
+/* 
    FILTRO DE PROJETOS
    (Requisito 1: estrutura de decisão if/else + Requisito 3: função)
-   ===================== */
+ */
 function filtrarProjetos(categoria) {
-  // Requisito 1: estrutura de decisão (if / else)
   if (categoria === 'todos') {
     renderizarProjetos(projetos);
   } else {
@@ -272,7 +263,6 @@ function filtrarProjetos(categoria) {
     }
   }
 
-  // Atualiza botão ativo
   const botoes = document.querySelectorAll('.filtro-btn');
   for (let i = 0; i < botoes.length; i++) {
     if (botoes[i].dataset.categoria === categoria) {
@@ -307,15 +297,13 @@ function criarBotoesFiltro() {
     wrapFiltros.appendChild(btn);
   }
 
-  // Insere antes do grid de projetos
   const grid = document.querySelector('.projetos-grid');
   projetosContainer.insertBefore(wrapFiltros, grid);
 }
 
-/* =====================
-   GREETING BY TIME OF DAY
-   (Requisito 1: estrutura de decisão if/else)
-   ===================== */
+/* 
+   SAUDAÇÕES
+ */
 function setGreeting() {
   const hour = new Date().getHours();
   const greetingEl = document.getElementById('greeting');
@@ -325,19 +313,16 @@ function setGreeting() {
 
   // Requisito 1: estrutura de decisão (if / else if / else)
   if (hour >= 5 && hour < 12) {
-    text = 'Bom dia! ☀️';
+    text = 'Bom dia! ';
   } else if (hour >= 12 && hour < 18) {
-    text = 'Boa tarde! 🌤️';
+    text = 'Boa tarde! ';
   } else {
-    text = 'Boa noite! 🌙';
+    text = 'Boa noite! ';
   }
 
   greetingEl.textContent = text;
 }
 
-/* =====================
-   NAVBAR SCROLL EFFECT
-   ===================== */
 const navbar = document.getElementById('navbar');
 
 window.addEventListener('scroll', () => {
@@ -348,9 +333,6 @@ window.addEventListener('scroll', () => {
   }
 });
 
-/* =====================
-   HAMBURGER MENU
-   ===================== */
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.querySelector('.nav-links');
 
@@ -378,9 +360,6 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
-/* =====================
-   SCROLL REVEAL
-   ===================== */
 function aplicarReveal() {
   const revealEls = document.querySelectorAll(
     '.sobre-grid, .projeto-card, .skill-card, .timeline-item, .curso-card, .section-title, .section-label'
@@ -399,7 +378,6 @@ function aplicarReveal() {
   revealEls.forEach(el => revealObserver.observe(el));
 }
 
-/* Stagger cards inside grids */
 function staggerGrid(gridSelector) {
   const cards = document.querySelectorAll(gridSelector);
   cards.forEach((card, i) => {
@@ -407,9 +385,6 @@ function staggerGrid(gridSelector) {
   });
 }
 
-/* =====================
-   SKILL BARS ANIMATION
-   ===================== */
 function observarBarras() {
   const skillFills = document.querySelectorAll('.skill-fill');
 
@@ -425,9 +400,6 @@ function observarBarras() {
   skillFills.forEach(fill => barObserver.observe(fill));
 }
 
-/* =====================
-   SMOOTH ACTIVE NAV LINK
-   ===================== */
 const sections = document.querySelectorAll('section[id]');
 const navItems = document.querySelectorAll('.nav-links a');
 
@@ -449,9 +421,9 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
 sections.forEach(sec => sectionObserver.observe(sec));
 
-/* =====================
+/*
    INICIALIZAÇÃO
-   ===================== */
+*/
 setGreeting();
 renderizarProjetos(projetos);   // Renderiza projetos a partir do array
 renderizarHabilidades();         // Renderiza habilidades a partir do array
