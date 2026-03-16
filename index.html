@@ -11,6 +11,40 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap"
     rel="stylesheet">
+  <style>
+    /* Botões de filtro de projetos */
+    .filtros-wrap {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filtro-btn {
+      padding: 0.4rem 1.1rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--primary, #a78bfa);
+      background: transparent;
+      color: var(--primary, #a78bfa);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .filtro-btn.ativo,
+    .filtro-btn:hover {
+      background: var(--primary, #a78bfa);
+      color: #fff;
+    }
+
+    .sem-resultados {
+      color: var(--text-muted, #aaa);
+      font-size: 0.95rem;
+      padding: 2rem 0;
+    }
+  </style>
 </head>
 
 <body>
@@ -101,168 +135,26 @@
   </section>
 
   <!-- PROJETOS -->
+  <!-- Os cards são gerados dinamicamente pelo script.js a partir do array `projetos` -->
   <section class="projetos section" id="projetos">
     <div class="container">
       <div class="section-label">— Projetos</div>
       <h2 class="section-title">O que eu criei</h2>
+      <!-- .filtros-wrap é injetado aqui pelo JS (criarBotoesFiltro) -->
       <div class="projetos-grid">
-
-        <div class="projeto-card" data-index="0">
-          <div class="projeto-thumb" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="8" y="30" width="10" height="22" rx="2" fill="#fff" fill-opacity="0.9" />
-              <rect x="25" y="18" width="10" height="34" rx="2" fill="#f59e0b" fill-opacity="0.9" />
-              <rect x="42" y="10" width="10" height="42" rx="2" fill="#34d399" fill-opacity="0.9" />
-            </svg>
-          </div>
-          <div class="projeto-body">
-            <h3>Análise de Dados dos Censos</h3>
-            <p>Análise e coleta de dados demográficos, educacionais e sociais de São José dos Campos e região utilizando
-              Python e pandas.</p>
-            <p class="projeto-detail">Projeto de faculdade desenvolvido em equipe na metodologia ágil. Desenvolvi
-              papel de scrum master, participando ativamente no gerenciamento do time e auxiliando nas tarefas de
-              desenvolvimento e análises de dados.</p>
-            <div class="projeto-tags">
-              <span class="tag tag-blue">Python</span>
-              <span class="tag tag-green">Pandas</span>
-              <span class="tag tag-orange">Matplotlib</span>
-              <span class="tag tag-yellow">Google Colab</span>
-              <span class="tag tag-orange">HTML</span>
-              <span class="tag tag-teal">CSS</span>
-              <span class="tag tag-dark">Flask</span>
-            </div>
-            <a href="https://github.com/koitech-API" target="_blank" class="btn btn-sm">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
-                <path
-                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-              </svg>
-              Ver no GitHub
-            </a>
-          </div>
-        </div>
-
-        <div class="projeto-card" data-index="1">
-          <div class="projeto-thumb" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="10" y="10" width="40" height="30" rx="4" fill="white" fill-opacity="0.2" stroke="white"
-                stroke-width="2" />
-              <line x1="10" y1="20" x2="50" y2="20" stroke="white" stroke-width="1.5" />
-              <rect x="15" y="25" width="12" height="8" rx="2" fill="white" fill-opacity="0.6" />
-              <rect x="33" y="25" width="12" height="8" rx="2" fill="white" fill-opacity="0.6" />
-              <line x1="30" y1="40" x2="30" y2="48" stroke="white" stroke-width="2" />
-              <rect x="20" y="48" width="20" height="4" rx="2" fill="white" fill-opacity="0.7" />
-            </svg>
-          </div>
-          <div class="projeto-body">
-            <h3>Primeiro Portfólio Pessoal</h3>
-            <p>Desenvolvido com HTML CSS e bootstrap. Essa é a primeira versão deste portfolio.</p>
-            <p class="projeto-detail">Projeto desenvolvido com foco em design responsivo,
-              aplicando boas práticas de desenvolvimento front-end.</p>
-            <div class="projeto-tags">
-              <span class="tag tag-orange">HTML</span>
-              <span class="tag tag-teal">CSS</span>
-              <span class="tag tag-yellow">Bootstrap</span>
-            </div>
-            <a href="https://giotrzz.github.io/portfolio/" target="_blank" class="btn btn-sm">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-              Ver Projeto
-            </a>
-          </div>
-        </div>
-
+        <!-- Cards renderizados dinamicamente por renderizarProjetos() -->
       </div>
     </div>
   </section>
 
   <!-- HABILIDADES -->
+  <!-- Os cards são gerados dinamicamente pelo script.js a partir do array `habilidades` -->
   <section class="habilidades section" id="habilidades">
     <div class="container">
       <div class="section-label">— Habilidades</div>
       <h2 class="section-title">Minhas Habilidades</h2>
       <div class="skills-grid">
-
-        <div class="skill-card">
-          <div class="skill-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
-            <svg viewBox="0 0 40 40" fill="none">
-              <text x="8" y="28" font-size="20" fill="white">🐍</text>
-            </svg>
-          </div>
-          <h3>Python</h3>
-          <p>Pandas, NumPy, Matplotlib, Flask</p>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--w: 75%"></div>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-icon" style="background: linear-gradient(135deg, #10b981, #047857);">
-            <svg viewBox="0 0 40 40" fill="none">
-              <text x="8" y="28" font-size="20" fill="white">📊</text>
-            </svg>
-          </div>
-          <h3>Data Analysis</h3>
-          <p>Excel, SQL, Visualização de dados</p>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--w: 70%"></div>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-icon" style="background: linear-gradient(135deg, #f59e0b, #b45309);">
-            <svg viewBox="0 0 40 40" fill="none">
-              <text x="8" y="28" font-size="20" fill="white">🌐</text>
-            </svg>
-          </div>
-          <h3>Web Dev</h3>
-          <p>HTML, CSS, JavaScript, Bootstrap</p>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--w: 80%"></div>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-icon" style="background: linear-gradient(135deg, #ec4899, #be185d);">
-            <svg viewBox="0 0 40 40" fill="none">
-              <text x="8" y="28" font-size="20" fill="white">🎨</text>
-            </svg>
-          </div>
-          <h3>Design</h3>
-          <p>UI/UX, Bootstrap, Figma</p>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--w: 65%"></div>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-icon" style="background: linear-gradient(135deg, #8b5cf6, #5b21b6);">
-            <svg viewBox="0 0 40 40" fill="none">
-              <text x="8" y="28" font-size="20" fill="white">🔒</text>
-            </svg>
-          </div>
-          <h3>Cibersegurança</h3>
-          <p>Redes, Sistemas Operacionais</p>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--w: 55%"></div>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <div class="skill-icon" style="background: linear-gradient(135deg, #06b6d4, #0e7490);">
-            <svg viewBox="0 0 40 40" fill="none">
-              <text x="8" y="28" font-size="20" fill="white">⚡</text>
-            </svg>
-          </div>
-          <h3>Metodologias</h3>
-          <p>SCRUM, Trabalho em equipe</p>
-          <div class="skill-bar">
-            <div class="skill-fill" style="--w: 72%"></div>
-          </div>
-        </div>
-
+        <!-- Cards renderizados dinamicamente por renderizarHabilidades() -->
       </div>
     </div>
   </section>
@@ -302,28 +194,8 @@
 
         <div class="cursos-col">
           <h3 class="timeline-title">Cursos & Certificações</h3>
-          <div class="cursos-list">
-
-            <div class="curso-card">
-              <div class="curso-thumb" style="background: linear-gradient(135deg, #f43f5e, #ec4899);">
-                <span>🎓</span>
-              </div>
-              <div class="curso-info">
-                <h4>Escola de Inovadores</h4>
-                <p>Programa voltado à formação de empreendedores inovadores. Aprendi a transformar ideias em soluções
-                  reais, aplicando ferramentas de gestão, inovação e design thinking para estruturar um projeto com
-                  potencial de impacto social e tecnológico.</p>
-                <a href="src/certificado_escola_inovadores.pdf" target="_blank" class="btn btn-sm btn-outline">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                  </svg>
-                  Ver Certificado
-                </a>
-              </div>
-            </div>
-
-          </div>
+          <!-- Cards renderizados dinamicamente por renderizarCursos() -->
+          <div class="cursos-list"></div>
         </div>
 
       </div>
