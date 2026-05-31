@@ -1,5 +1,6 @@
 const fastify = require('fastify')({ logger: true })
 const cors = require('@fastify/cors')
+const pool = require('./database')
 
 fastify.register(cors, { origin: '*' })
 
@@ -153,50 +154,95 @@ let formacao = [
 
 fastify.get('/projetos', async (request, reply) => {
   const { categoria } = request.query
+
   if (categoria && categoria !== 'todos') {
-    return projetos.filter(p => p.categoria === categoria)
+    const resultado = await pool.query(
+      'SELECT * FROM projetos WHERE categoria = $1 ORDER BY id',
+      [categoria]
+    )
+
+    return resultado.rows
   }
-  return projetos
+
+  const resultado = await pool.query(
+    'SELECT * FROM projetos ORDER BY id'
+  )
+
+  return resultado.rows
 })
 
 fastify.get('/projetos/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const projeto = projetos.find(p => p.id === id)
-  if (!projeto) {
+
+  const resultado = await pool.query(
+    'SELECT * FROM projetos WHERE id = $1',
+    [id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Projeto não encontrado' }
   }
-  return projeto
+
+  return resultado.rows[0]
 })
 
 fastify.post('/projetos', async (request, reply) => {
-  const novo = request.body
-  novo.id = projetos.length > 0 ? Math.max(...projetos.map(p => p.id)) + 1 : 0
-  projetos.push(novo)
+  const { titulo, descricao, detalhe, categoria, link, linkTexto, linkIcone, thumb } = request.body
+
+  const resultado = await pool.query(
+    `INSERT INTO projetos 
+    (titulo, descricao, detalhe, categoria, link, link_texto, link_icone, thumb)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    RETURNING *`,
+    [titulo, descricao, detalhe, categoria, link, linkTexto, linkIcone, thumb]
+  )
+
   reply.code(201)
-  return novo
+  return resultado.rows[0]
 })
 
 fastify.put('/projetos/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const index = projetos.findIndex(p => p.id === id)
-  if (index === -1) {
+  const { titulo, descricao, detalhe, categoria, link, linkTexto, linkIcone, thumb } = request.body
+
+  const resultado = await pool.query(
+    `UPDATE projetos SET
+      titulo = $1,
+      descricao = $2,
+      detalhe = $3,
+      categoria = $4,
+      link = $5,
+      link_texto = $6,
+      link_icone = $7,
+      thumb = $8
+    WHERE id = $9
+    RETURNING *`,
+    [titulo, descricao, detalhe, categoria, link, linkTexto, linkIcone, thumb, id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Projeto não encontrado' }
   }
-  projetos[index] = { ...projetos[index], ...request.body }
-  return projetos[index]
+
+  return resultado.rows[0]
 })
 
 fastify.delete('/projetos/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const index = projetos.findIndex(p => p.id === id)
-  if (index === -1) {
+
+  const resultado = await pool.query(
+    'DELETE FROM projetos WHERE id = $1 RETURNING *',
+    [id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Projeto não encontrado' }
   }
-  const removido = projetos.splice(index, 1)[0]
-  return { mensagem: 'Projeto removido', projeto: removido }
+
+  return { mensagem: 'Projeto removido', projeto: resultado.rows[0] }
 })
 
 // ============================================================
@@ -204,47 +250,82 @@ fastify.delete('/projetos/:id', async (request, reply) => {
 // ============================================================
 
 fastify.get('/habilidades', async (request, reply) => {
-  return habilidades
+  const resultado = await pool.query(
+    'SELECT * FROM habilidades ORDER BY id'
+  )
+
+  return resultado.rows
 })
 
 fastify.get('/habilidades/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const habilidade = habilidades.find(h => h.id === id)
-  if (!habilidade) {
+
+  const resultado = await pool.query(
+    'SELECT * FROM habilidades WHERE id = $1',
+    [id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Habilidade não encontrada' }
   }
-  return habilidade
+
+  return resultado.rows[0]
 })
 
 fastify.post('/habilidades', async (request, reply) => {
-  const nova = request.body
-  nova.id = habilidades.length > 0 ? Math.max(...habilidades.map(h => h.id)) + 1 : 0
-  habilidades.push(nova)
+  const { titulo, descricao, nivel, gradiente, emoji } = request.body
+
+  const resultado = await pool.query(
+    `INSERT INTO habilidades 
+    (titulo, descricao, nivel, gradiente, emoji)
+    VALUES ($1, $2, $3, $4, $5)
+    RETURNING *`,
+    [titulo, descricao, nivel, gradiente, emoji]
+  )
+
   reply.code(201)
-  return nova
+  return resultado.rows[0]
 })
 
 fastify.put('/habilidades/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const index = habilidades.findIndex(h => h.id === id)
-  if (index === -1) {
+  const { titulo, descricao, nivel, gradiente, emoji } = request.body
+
+  const resultado = await pool.query(
+    `UPDATE habilidades SET
+      titulo = $1,
+      descricao = $2,
+      nivel = $3,
+      gradiente = $4,
+      emoji = $5
+    WHERE id = $6
+    RETURNING *`,
+    [titulo, descricao, nivel, gradiente, emoji, id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Habilidade não encontrada' }
   }
-  habilidades[index] = { ...habilidades[index], ...request.body }
-  return habilidades[index]
+
+  return resultado.rows[0]
 })
 
 fastify.delete('/habilidades/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const index = habilidades.findIndex(h => h.id === id)
-  if (index === -1) {
+
+  const resultado = await pool.query(
+    'DELETE FROM habilidades WHERE id = $1 RETURNING *',
+    [id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Habilidade não encontrada' }
   }
-  const removida = habilidades.splice(index, 1)[0]
-  return { mensagem: 'Habilidade removida', habilidade: removida }
+
+  return { mensagem: 'Habilidade removida', habilidade: resultado.rows[0] }
 })
 
 // ============================================================
@@ -252,61 +333,115 @@ fastify.delete('/habilidades/:id', async (request, reply) => {
 // ============================================================
 
 fastify.get('/cursos', async (request, reply) => {
-  return cursos
+  const resultado = await pool.query(
+    'SELECT * FROM cursos ORDER BY id'
+  )
+
+  return resultado.rows
 })
 
 fastify.get('/cursos/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const curso = cursos.find(c => c.id === id)
-  if (!curso) {
+
+  const resultado = await pool.query(
+    'SELECT * FROM cursos WHERE id = $1',
+    [id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Curso não encontrado' }
   }
-  return curso
+
+  return resultado.rows[0]
 })
 
 fastify.post('/cursos', async (request, reply) => {
-  const novo = request.body
-  novo.id = cursos.length > 0 ? Math.max(...cursos.map(c => c.id)) + 1 : 0
-  cursos.push(novo)
+  const { titulo, descricao, gradiente, emoji, linkCertificado } = request.body
+
+  const resultado = await pool.query(
+    `INSERT INTO cursos 
+    (titulo, descricao, gradiente, emoji, link_certificado)
+    VALUES ($1, $2, $3, $4, $5)
+    RETURNING *`,
+    [titulo, descricao, gradiente, emoji, linkCertificado]
+  )
+
   reply.code(201)
-  return novo
+  return resultado.rows[0]
 })
 
 fastify.put('/cursos/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const index = cursos.findIndex(c => c.id === id)
-  if (index === -1) {
+  const { titulo, descricao, gradiente, emoji, linkCertificado } = request.body
+
+  const resultado = await pool.query(
+    `UPDATE cursos SET
+      titulo = $1,
+      descricao = $2,
+      gradiente = $3,
+      emoji = $4,
+      link_certificado = $5
+    WHERE id = $6
+    RETURNING *`,
+    [titulo, descricao, gradiente, emoji, linkCertificado, id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Curso não encontrado' }
   }
-  cursos[index] = { ...cursos[index], ...request.body }
-  return cursos[index]
+
+  return resultado.rows[0]
 })
 
 fastify.delete('/cursos/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const index = cursos.findIndex(c => c.id === id)
-  if (index === -1) {
+
+  const resultado = await pool.query(
+    'DELETE FROM cursos WHERE id = $1 RETURNING *',
+    [id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Curso não encontrado' }
   }
-  const removido = cursos.splice(index, 1)[0]
-  return { mensagem: 'Curso removido', curso: removido }
-})
 
+  return { mensagem: 'Curso removido', curso: resultado.rows[0] }
+})
 
 // ============================================================
 // ROTAS — SOBRE
 // ============================================================
 
 fastify.get('/sobre', async (request, reply) => {
-  return sobre
+  const resultado = await pool.query(
+    'SELECT * FROM sobre LIMIT 1'
+  )
+
+  return resultado.rows[0]
 })
 
 fastify.put('/sobre', async (request, reply) => {
-  sobre = { ...sobre, ...request.body }
-  return sobre
+  const { nome, bio, foto } = request.body
+
+  const resultado = await pool.query(
+    `UPDATE sobre SET
+      nome = $1,
+      bio = $2,
+      foto = $3
+    WHERE id = 1
+    RETURNING *`,
+    [nome, bio, foto]
+  )
+
+  if (resultado.rows.length === 0) {
+    reply.code(404)
+    return { erro: 'Dados sobre não encontrados' }
+  }
+
+  return resultado.rows[0]
 })
 
 // ============================================================
@@ -315,48 +450,92 @@ fastify.put('/sobre', async (request, reply) => {
 
 fastify.get('/formacao', async (request, reply) => {
   const { tipo } = request.query
-  if (tipo) return formacao.filter(f => f.tipo === tipo)
-  return formacao
+
+  if (tipo) {
+    const resultado = await pool.query(
+      'SELECT * FROM formacao WHERE tipo = $1 ORDER BY id',
+      [tipo]
+    )
+
+    return resultado.rows
+  }
+
+  const resultado = await pool.query(
+    'SELECT * FROM formacao ORDER BY id'
+  )
+
+  return resultado.rows
 })
 
 fastify.get('/formacao/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const item = formacao.find(f => f.id === id)
-  if (!item) {
+
+  const resultado = await pool.query(
+    'SELECT * FROM formacao WHERE id = $1',
+    [id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Formação não encontrada' }
   }
-  return item
+
+  return resultado.rows[0]
 })
 
 fastify.post('/formacao', async (request, reply) => {
-  const novo = request.body
-  novo.id = formacao.length > 0 ? Math.max(...formacao.map(f => f.id)) + 1 : 0
-  formacao.push(novo)
+  const { tipo, periodo, titulo, instituicao, descricao } = request.body
+
+  const resultado = await pool.query(
+    `INSERT INTO formacao
+    (tipo, periodo, titulo, instituicao, descricao)
+    VALUES ($1, $2, $3, $4, $5)
+    RETURNING *`,
+    [tipo, periodo, titulo, instituicao, descricao]
+  )
+
   reply.code(201)
-  return novo
+  return resultado.rows[0]
 })
 
 fastify.put('/formacao/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const index = formacao.findIndex(f => f.id === id)
-  if (index === -1) {
+  const { tipo, periodo, titulo, instituicao, descricao } = request.body
+
+  const resultado = await pool.query(
+    `UPDATE formacao SET
+      tipo = $1,
+      periodo = $2,
+      titulo = $3,
+      instituicao = $4,
+      descricao = $5
+    WHERE id = $6
+    RETURNING *`,
+    [tipo, periodo, titulo, instituicao, descricao, id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Formação não encontrada' }
   }
-  formacao[index] = { ...formacao[index], ...request.body }
-  return formacao[index]
+
+  return resultado.rows[0]
 })
 
 fastify.delete('/formacao/:id', async (request, reply) => {
   const id = parseInt(request.params.id)
-  const index = formacao.findIndex(f => f.id === id)
-  if (index === -1) {
+
+  const resultado = await pool.query(
+    'DELETE FROM formacao WHERE id = $1 RETURNING *',
+    [id]
+  )
+
+  if (resultado.rows.length === 0) {
     reply.code(404)
     return { erro: 'Formação não encontrada' }
   }
-  const removido = formacao.splice(index, 1)[0]
-  return { mensagem: 'Formação removida', formacao: removido }
+
+  return { mensagem: 'Formação removida', formacao: resultado.rows[0] }
 })
 
 // ============================================================
