@@ -31,6 +31,23 @@ let projetos = [
   },
   {
     id: 1,
+    titulo: "KOITECH-AERO",
+    descricao: "Sistema web para gerenciamento, consulta e rastreabilidade de normas técnicas utilizadas em atividades de engenharia.",
+    detalhe: "Projeto desenvolvido em equipe para solucionar a dificuldade de organização e busca de normas técnicas. A plataforma permite registrar, consultar, classificar e rastrear normas de forma estruturada, tornando o acesso às informações mais rápido e eficiente. O sistema conta com recursos de busca, organização por categorias, controle de informações e integração entre frontend, backend e banco de dados.",
+    tags: [
+      { texto: "React", cor: "tag-teal" },
+      { texto: "TypeScript", cor: "tag-yellow" },
+      { texto: "PostgreSQL", cor: "tag-orange" },
+      { texto: "Docker", cor: "tag-teal" }
+    ],
+    categoria: "web",
+    link: "https://github.com/KoiTech-Aero",
+    linkTexto: "Ver Repositório",
+    linkIcone: "externo",
+    thumb: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+  },
+  {
+    id: 2,
     titulo: "Primeiro Portfólio Pessoal",
     descricao: "Desenvolvido com HTML CSS e bootstrap. Essa é a primeira versão deste portfolio.",
     detalhe: "Projeto desenvolvido com foco em design responsivo, aplicando boas práticas de desenvolvimento front-end.",
